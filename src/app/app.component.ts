@@ -1,3 +1,4 @@
+import { PostServiceService } from './post-service.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'social-app';
+  allPosts:any = [];
+  
+  constructor(private ps:PostServiceService){
+    
+  }
+
+  ngOnInit() {
+    this.ps.getPosts().subscribe((data)=>{
+      this.allPosts = data;
+    });
+  }
 }
